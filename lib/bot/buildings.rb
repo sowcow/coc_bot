@@ -13,6 +13,11 @@ module Buildings
         send "order_#{sign}"
       end
     end
+
+    def order_
+      Order.new unused: true  # okish fix
+                              # for short sequences
+    end
   end
 
   class Barracks < Building
