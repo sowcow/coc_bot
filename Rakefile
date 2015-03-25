@@ -15,7 +15,7 @@ task :buy, :orders do |_, params|
   # Game#activate is:
   #
   # a vague defined action that depends on user
-  # user should run emulator in a known state
+  # user should run emulator in a known reproducible state
   #
   # on my machine it is fullscreen on a home base screen
   # zoomed-out to the NW
