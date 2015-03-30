@@ -11,13 +11,19 @@ task :ui do
       a = an
 
       an.option 'buy troops' do
-        puts '*** buying ***'
-        gets
+        troops = 'bbaam'
+        system './buy.sh %s' % troops
       end
 
       an.option 'farm' do
-        puts '*** farming ***'
-        gets
+        # TODO: do attack, move cursor to next button,
+        #       activate clicker...
+        begin
+          system 'ruby clicker.rb' rescue nil
+        rescue Interrupt => e
+        end
+        #puts 'done clicking...'
+        #gets
       end
 
       a.ctrl_c do
