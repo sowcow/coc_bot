@@ -1,3 +1,27 @@
+task :default => :ui
+
+task :ui do
+  require 'dialog_tui'  # NOTE: a gem dependency
+  #include DialogTui
+
+  loop {
+    #dialog { |an|
+    DialogTui.dialog { |an|
+      an.option 'buy troops' do
+        puts '*** buying ***'
+      end
+
+      an.option 'farm' do
+        puts '*** farming ***'
+      end
+
+      an.ctrl_c do
+        exit 0
+      end
+    }
+  }
+end
+
 task :buy, :orders do |_, params|
                                          # order matters
   params.with_defaults orders: 'bbaa--h' # two barracks of barbs
