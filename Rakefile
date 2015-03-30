@@ -2,21 +2,30 @@ task :default => :ui
 
 task :ui do
   require 'dialog_tui'  # NOTE: a gem dependency
-  #include DialogTui
+  include DialogTui
+
 
   loop {
-    #dialog { |an|
-    DialogTui.dialog { |an|
+
+    dialog { |an|
+      a = an
+
       an.option 'buy troops' do
         puts '*** buying ***'
+        gets
       end
 
       an.option 'farm' do
         puts '*** farming ***'
+        gets
       end
 
-      an.ctrl_c do
+      a.ctrl_c do
         exit 0
+      end
+
+      a.before_draw do
+        system 'clear'
       end
     }
   }

@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dialog_tui (0.1.2)
+    dialog_tui (0.1.3)
 
 PLATFORMS
   ruby
