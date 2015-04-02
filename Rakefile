@@ -1,19 +1,28 @@
+require 'yaml'
+
 task :default => :ui
 
 task :ui do
   require 'dialog_tui'  # NOTE: a gem dependency
   include DialogTui
 
+  require_relative 'lib/troop_configs'
 
   loop {
 
     dialog { |an|
       a = an
 
-      an.option 'buy troops' do
-        troops = 'bbaam'
-        system './buy.sh %s' % troops
-      end
+      troop_configs = TroopConfigs.new 'troop_configs.yml'
+      troop_configs.each_ordered { |troop|
+        an.option "buy: #{troop.name}" do
+
+          # not an east oriented code, but ok i guess
+          troop_configs.used troop
+          ok = system './buy.sh %s' % troop.command
+          exit unless ok
+        end
+      }
 
       an.option 'farm' do
         # TODO: do attack, move cursor to next button,
